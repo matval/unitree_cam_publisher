@@ -54,14 +54,16 @@ int main(int argc, char **argv)
             fps = std::atoi(argv[4]);
     }
     
-    UnitreeCamera cam("stereo_camera_config.yaml"); ///< init camera by device node number
+    UnitreeCamera cam(deviceNode) //"stereo_camera_config.yaml"); ///< init camera by device node number
     if(!cam.isOpened())   ///< get camera open state
         exit(EXIT_FAILURE);
     
     cam.setRawFrameSize(frameSize); ///< set camera frame size
     cam.setRawFrameRate(fps);       ///< set camera camera fps
     cam.setRectFrameSize(cv::Size(frameSize.width >> 2, frameSize.height >> 1)); ///< set camera rectify frame size
+    
     cam.startCapture(); ///< disable image h264 encoding and share memory sharing
+    cam.startStereoCompute(); ///< start disparity computing
     
     usleep(500000);
 
