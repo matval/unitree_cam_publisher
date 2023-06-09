@@ -54,7 +54,7 @@ int main(int argc, char **argv)
             fps = std::atoi(argv[4]);
     }
     
-    UnitreeCamera cam(deviceNode) //"stereo_camera_config.yaml"); ///< init camera by device node number
+    UnitreeCamera cam(deviceNode); //"stereo_camera_config.yaml"); ///< init camera by device node number
     if(!cam.isOpened())   ///< get camera open state
         exit(EXIT_FAILURE);
     
