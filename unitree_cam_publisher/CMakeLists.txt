@@ -18,6 +18,10 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(image_transport REQUIRED)
 find_package(OpenCV 4 REQUIRED)
 
 if(OpenCV_FOUND)
@@ -62,7 +66,7 @@ link_directories(
 
 add_executable(camera_node src/camera_node.cpp)
 target_link_libraries(camera_node ${SDKLIBS})
-ament_target_dependencies(camera_node rclcpp OpenCV)
+ament_target_dependencies(camera_node rclcpp cv_bridge image_transport OpenCV)
 
 install(TARGETS camera_node
   DESTINATION lib/${PROJECT_NAME})
