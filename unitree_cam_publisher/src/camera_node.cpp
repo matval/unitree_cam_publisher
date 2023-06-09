@@ -38,15 +38,6 @@ std::string type2str(int type) {
     return r;
 }
 
-class ImagePublisher : public rclcpp::Node
-{
-    public:
-        ImagePublisher(int argc, char **argv) : Node("minimal_publisher")
-        {
-            
-        }
-};
-
 int main(int argc, char **argv)
 {
     int deviceNode = 0; ///< default 0 -> /dev/video0
