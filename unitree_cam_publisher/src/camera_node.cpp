@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <chrono>
+#include <string>
 #include <unistd.h>
 
 // Unitree SDK
@@ -11,10 +12,11 @@
 #include "image_transport/image_transport.hpp"
 #include "std_msgs/msg/header.hpp"
 
+
 using namespace std::chrono_literals;
 
 string type2str(int type) {
-    string r;
+    std::string r;
 
     uchar depth = type & CV_MAT_DEPTH_MASK;
     uchar chans = 1 + (type >> CV_CN_SHIFT);
@@ -39,7 +41,7 @@ string type2str(int type) {
 class ImagePublisher : public rclcpp::Node
 {
     public:
-        ImagePublisher() : Node("image_publisher")
+        ImagePublisher(int argc, char **argv)
         {
             int deviceNode = 0; ///< default 0 -> /dev/video0
             cv::Size frameSize(1856, 800); ///< default frame size 1856x800
@@ -66,6 +68,8 @@ class ImagePublisher : public rclcpp::Node
             
             usleep(500000);
 
+            rclcpp::NodeOptions options;
+            rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared("image_publisher", options);
             image_transport::ImageTransport it(node);
             image_transport::Publisher color_pub = it.advertise("camera/image", 1);
             image_transport::Publisher depth_pub = it.advertise("camera/depth", 1);
@@ -125,10 +129,10 @@ class ImagePublisher : public rclcpp::Node
         }
 }
 
-int main(int argc, char * argv[])
+int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<ImagePublisher>());
+    rclcpp::spin(std::make_shared<ImagePublisher>(argc, argv));
     rclcpp::shutdown();
     return 0;
 }
