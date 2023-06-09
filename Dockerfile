@@ -9,6 +9,6 @@ COPY unitree_cam_publisher workspace/ros2_ws/src
 
 RUN cd workspace/ros2_ws
 
-RUN . /opt/ros/$ROS_DISTRO/setup.sh && colcon build
+RUN . /opt/ros/$ROS_DISTRO/install/setup.sh && colcon build
 
 RUN echo "ALL DONE!"
