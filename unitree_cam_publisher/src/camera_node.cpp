@@ -15,7 +15,7 @@
 
 using namespace std::chrono_literals;
 
-string type2str(int type) {
+std::string type2str(int type) {
     std::string r;
 
     uchar depth = type & CV_MAT_DEPTH_MASK;
@@ -103,7 +103,7 @@ class ImagePublisher : public rclcpp::Node
                 if (!depth.empty())
                 {
                     // Depbug depth image type
-                    string ty =  type2str( depth.type() );
+                    std::string ty =  type2str( depth.type() );
                     printf("Depth: %s %dx%d \n", ty.c_str(), depth.cols, depth.rows );
 
                     depth_msg = cv_bridge::CvImage(hdr, "mono16", depth).toImageMsg();
@@ -127,7 +127,7 @@ class ImagePublisher : public rclcpp::Node
             
             cam.stopCapture(); ///< stop camera capturing
         }
-}
+};
 
 int main(int argc, char **argv)
 {
