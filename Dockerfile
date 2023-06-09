@@ -7,8 +7,8 @@ RUN mkdir -p workspace/ros2_ws/src
 
 COPY unitree_cam_publisher workspace/ros2_ws/src
 
-RUN cd workspace/ros2_ws/src
+RUN cd workspace/ros2_ws
 
-RUN colcon build
+RUN . /opt/ros/$ROS_DISTRO/setup.sh && colcon build
 
 RUN echo "ALL DONE!"
