@@ -60,11 +60,11 @@ link_directories(
   ${CMAKE_SOURCE_DIR}/UnitreecameraSDK/lib
 )
 
-add_executable(cameras_node src/cameras_node.cpp)
-target_link_libraries(cameras_node ${SDKLIBS})
-ament_target_dependencies(cameras_node rclcpp OpenCV)
+add_executable(camera_node src/camera_node.cpp)
+target_link_libraries(camera_node ${SDKLIBS})
+ament_target_dependencies(camera_node rclcpp OpenCV)
 
-install(TARGETS cameras_node
+install(TARGETS camera_node
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.yrf": "json",
+        "*.rpx": "xml",
+        "cstdio": "cpp",
+        "*.ipp": "cpp",
+        "array": "cpp",
+        "string_view": "cpp"
+    }
+}
