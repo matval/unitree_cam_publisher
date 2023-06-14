@@ -1,0 +1,1151 @@
+{
+  "version": "1.1",
+  "engine": "linux|Transformer|1.40.2|762eea87bafc4b04fe6b0642a62534a148acdaca|2023-05-20_06:09:23AM",
+  "containerized": false,
+  "host_distro": {
+    "name": "Ubuntu",
+    "version": "18.04",
+    "display_name": "Ubuntu 18.04.5 LTS"
+  },
+  "type": "build",
+  "state": "done",
+  "target_reference": "matvalverde/unitree_cam:latest",
+  "system": {
+    "type": "",
+    "release": "",
+    "distro": {
+      "name": "",
+      "version": "",
+      "display_name": ""
+    }
+  },
+  "source_image": {
+    "identity": {
+      "id": "sha256:f0a72b01aafa020e26f280d1d555747d7a82aec0d0dcde2be2ef589bad390359",
+      "tags": [
+        "latest"
+      ],
+      "names": [
+        "matvalverde/unitree_cam:latest"
+      ]
+    },
+    "size": 3174086586,
+    "size_human": "3.2 GB",
+    "create_time": "2023-06-10T14:39:38Z",
+    "docker_version": "19.03.6",
+    "architecture": "arm64",
+    "os": "linux",
+    "env_vars": [
+      "PATH=/usr/local/cuda-10.2/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "LD_LIBRARY_PATH=/usr/local/cuda-10.2/targets/aarch64-linux/lib:",
+      "NVIDIA_VISIBLE_DEVICES=all",
+      "NVIDIA_DRIVER_CAPABILITIES=all",
+      "ROS_DISTRO=foxy",
+      "ROS_ROOT=/opt/ros/foxy",
+      "DEBIAN_FRONTEND=noninteractive",
+      "SHELL=/bin/bash",
+      "LANG=en_US.UTF-8",
+      "PYTHONIOENCODING=utf-8",
+      "RMW_IMPLEMENTATION=rmw_cyclonedds_cpp"
+    ],
+    "container_entry": {
+      "exe_path": ""
+    }
+  },
+  "minified_image_size": 19193588,
+  "minified_image_size_human": "19 MB",
+  "minified_image": "matvalverde/unitree_cam.slim",
+  "minified_image_has_data": true,
+  "minified_by": 165.3722371241896,
+  "artifact_location": "/tmp/slim-state/.slim-state/images/f0a72b01aafa020e26f280d1d555747d7a82aec0d0dcde2be2ef589bad390359/artifacts",
+  "container_report_name": "creport.json",
+  "seccomp_profile_name": "matvalverde-unitree_cam-seccomp.json",
+  "apparmor_profile_name": "matvalverde-unitree_cam-apparmor-profile",
+  "image_stack": [
+    {
+      "is_top_image": false,
+      "id": "sha256:271f802bf86370562eb07b00e7cad26ac0af7f7eddd5e9b1bf3287ec0fbb83c9",
+      "full_name": "dustynv/ros:foxy-ros-base-l4t-r32.5.0",
+      "repo_name": "dustynv/ros",
+      "version_tag": "foxy-ros-base-l4t-r32.5.0",
+      "raw_tags": [
+        "dustynv/ros:foxy-ros-base-l4t-r32.5.0"
+      ],
+      "create_time": "2021-08-05T23:01:25Z",
+      "new_size": 3100903152,
+      "new_size_human": "3.1 GB",
+      "instructions": [
+        {
+          "type": "ADD",
+          "time": "2020-11-25T22:42:53Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 56741774,
+          "size_human": "57 MB",
+          "params": "file:e5b221023382c9e42b8558f8887f8317fe7e9759f59feb1799548aed9236e99b in /",
+          "command_snippet": "ADD file:e5b221023382c9e42b8558f8887f8317fe7...",
+          "command_all": "ADD file:e5b221023382c9e42b8558f8887f8317fe7e9759f59feb1799548aed9236e99b /",
+          "target": "/",
+          "source_type": "file",
+          "inst_set_time_bucket": "2020-11-25T16:30:00-06:00",
+          "inst_set_time_index": 0,
+          "inst_set_time_reverse_index": 9
+        },
+        {
+          "type": "RUN",
+          "time": "2020-11-25T22:42:56Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 745,
+          "size_human": "745 B",
+          "command_snippet": "RUN set -xe && \\\n\techo '#!/bin/sh' > /usr/sb...",
+          "command_all": "RUN set -xe && \\\n\techo '#!/bin/sh' > /usr/sbin/policy-rc.d && \\\n\techo 'exit 101' >> /usr/sbin/policy-rc.d && \\\n\tchmod +x /usr/sbin/policy-rc.d && \\\n\tdpkg-divert --local --rename --add /sbin/initctl && \\\n\tcp -a /usr/sbin/policy-rc.d /sbin/initctl && \\\n\tsed -i 's/^exit.*/exit 0/' /sbin/initctl && \\\n\techo 'force-unsafe-io' > /etc/dpkg/dpkg.cfg.d/docker-apt-speedup && \\\n\techo 'DPkg::Post-Invoke { \"rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true\"; };' > /etc/apt/apt.conf.d/docker-clean && \\\n\techo 'APT::Update::Post-Invoke { \"rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true\"; };' >> /etc/apt/apt.conf.d/docker-clean && \\\n\techo 'Dir::Cache::pkgcache \"\"; Dir::Cache::srcpkgcache \"\";' >> /etc/apt/apt.conf.d/docker-clean && \\\n\techo 'Acquire::Languages \"none\";' > /etc/apt/apt.conf.d/docker-no-languages && \\\n\techo 'Acquire::GzipIndexes \"true\"; Acquire::CompressionTypes::Order:: \"gz\";' > /etc/apt/apt.conf.d/docker-gzip-indexes && \\\n\techo 'Apt::AutoRemove::SuggestsImportant \"false\";' > /etc/apt/apt.conf.d/docker-autoremove-suggests",
+          "system_commands": [
+            "set -xe",
+            "echo '#!/bin/sh' > /usr/sbin/policy-rc.d",
+            "echo 'exit 101' >> /usr/sbin/policy-rc.d",
+            "chmod +x /usr/sbin/policy-rc.d",
+            "dpkg-divert --local --rename --add /sbin/initctl",
+            "cp -a /usr/sbin/policy-rc.d /sbin/initctl",
+            "sed -i 's/^exit.*/exit 0/' /sbin/initctl",
+            "echo 'force-unsafe-io' > /etc/dpkg/dpkg.cfg.d/docker-apt-speedup",
+            "echo 'DPkg::Post-Invoke { \"rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true\"; };' > /etc/apt/apt.conf.d/docker-clean",
+            "echo 'APT::Update::Post-Invoke { \"rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true\"; };' >> /etc/apt/apt.conf.d/docker-clean",
+            "echo 'Dir::Cache::pkgcache \"\"; Dir::Cache::srcpkgcache \"\";' >> /etc/apt/apt.conf.d/docker-clean",
+            "echo 'Acquire::Languages \"none\";' > /etc/apt/apt.conf.d/docker-no-languages",
+            "echo 'Acquire::GzipIndexes \"true\"; Acquire::CompressionTypes::Order:: \"gz\";' > /etc/apt/apt.conf.d/docker-gzip-indexes",
+            "echo 'Apt::AutoRemove::SuggestsImportant \"false\";' > /etc/apt/apt.conf.d/docker-autoremove-suggests"
+          ],
+          "inst_set_time_bucket": "2020-11-25T16:30:00-06:00",
+          "inst_set_time_index": 0,
+          "inst_set_time_reverse_index": 9
+        },
+        {
+          "type": "RUN",
+          "time": "2020-11-25T22:42:58Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [ -z \"$(apt-get indextargets)\" ]",
+          "command_all": "RUN [ -z \"$(apt-get indextargets)\" ]",
+          "system_commands": [
+            "[ -z \"$(apt-get indextargets)\" ]"
+          ],
+          "inst_set_time_bucket": "2020-11-25T16:30:00-06:00",
+          "inst_set_time_index": 0,
+          "inst_set_time_reverse_index": 9
+        },
+        {
+          "type": "RUN",
+          "time": "2020-11-25T22:43:00Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 7,
+          "size_human": "7 B",
+          "command_snippet": "RUN mkdir -p /run/systemd && \\\n\techo 'docker...",
+          "command_all": "RUN mkdir -p /run/systemd && \\\n\techo 'docker' > /run/systemd/container",
+          "system_commands": [
+            "mkdir -p /run/systemd",
+            "echo 'docker' > /run/systemd/container"
+          ],
+          "inst_set_time_bucket": "2020-11-25T16:30:00-06:00",
+          "inst_set_time_index": 0,
+          "inst_set_time_reverse_index": 9
+        },
+        {
+          "type": "CMD",
+          "time": "2020-11-25T22:43:01Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"/bin/bash\"]\n",
+          "command_snippet": "CMD [\"/bin/bash\"]\n",
+          "command_all": "CMD [\"/bin/bash\"]\n",
+          "inst_set_time_bucket": "2020-11-25T16:30:00-06:00",
+          "inst_set_time_index": 0,
+          "inst_set_time_reverse_index": 9
+        },
+        {
+          "type": "ARG",
+          "time": "2020-12-05T00:25:03Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "DEBIAN_FRONTEND=noninteractive",
+          "command_snippet": "ARG DEBIAN_FRONTEND=noninteractive",
+          "command_all": "ARG DEBIAN_FRONTEND=noninteractive",
+          "inst_set_time_bucket": "2020-12-04T18:15:00-06:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 8
+        },
+        {
+          "type": "RUN",
+          "time": "2020-12-05T00:32:54Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 465815398,
+          "size_human": "466 MB",
+          "command_snippet": "RUN apt-get update && apt-get install -qq -y...",
+          "command_all": "RUN apt-get update && apt-get install -qq -y --no-install-recommends bc bzip2 can-utils freeglut3-dev gstreamer1.0-alsa gstreamer1.0-libav gstreamer1.0-plugins-bad gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools i2c-tools iw kbd language-pack-en-base libapt-inst2.0 libcanberra-gtk3-module libgles2 libglu1-mesa-dev libglvnd-dev libgtk-3-0 libpython2.7 libudev1 libvulkan1 libzmq5 mtd-utils parted pciutils python python-pexpect python3-distutils sox udev vulkan-utils wget wireless-tools wpasupplicant && rm -rf /var/lib/apt/lists/* && apt-get clean",
+          "system_commands": [
+            "apt-get update",
+            "apt-get install -qq -y --no-install-recommends bc bzip2 can-utils freeglut3-dev gstreamer1.0-alsa gstreamer1.0-libav gstreamer1.0-plugins-bad gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools i2c-tools iw kbd language-pack-en-base libapt-inst2.0 libcanberra-gtk3-module libgles2 libglu1-mesa-dev libglvnd-dev libgtk-3-0 libpython2.7 libudev1 libvulkan1 libzmq5 mtd-utils parted pciutils python python-pexpect python3-distutils sox udev vulkan-utils wget wireless-tools wpasupplicant",
+            "rm -rf /var/lib/apt/lists/*",
+            "apt-get clean"
+          ],
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "RUN",
+          "time": "2020-12-05T00:33:11Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 70,
+          "size_human": "70 B",
+          "command_snippet": "RUN echo /usr/lib/aarch64-linux-gnu/tegra >>...",
+          "command_all": "RUN echo /usr/lib/aarch64-linux-gnu/tegra >> /etc/ld.so.conf.d/nvidia-tegra.conf && echo /usr/lib/aarch64-linux-gnu/tegra-egl >> /etc/ld.so.conf.d/nvidia-tegra.conf",
+          "system_commands": [
+            "echo /usr/lib/aarch64-linux-gnu/tegra >> /etc/ld.so.conf.d/nvidia-tegra.conf",
+            "echo /usr/lib/aarch64-linux-gnu/tegra-egl >> /etc/ld.so.conf.d/nvidia-tegra.conf"
+          ],
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "RUN",
+          "time": "2020-12-05T00:33:12Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN rm /usr/share/glvnd/egl_vendor.d/50_mesa...",
+          "command_all": "RUN rm /usr/share/glvnd/egl_vendor.d/50_mesa.json",
+          "system_commands": [
+            "rm /usr/share/glvnd/egl_vendor.d/50_mesa.json"
+          ],
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "RUN",
+          "time": "2020-12-05T00:33:14Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 102,
+          "size_human": "102 B",
+          "command_snippet": "RUN mkdir -p /usr/share/glvnd/egl_vendor.d/ ...",
+          "command_all": "RUN mkdir -p /usr/share/glvnd/egl_vendor.d/ && echo {    \"file_format_version\" : \"1.0.0\",    \"ICD\" : {        \"library_path\" : \"libEGL_nvidia.so.0\"    }} > /usr/share/glvnd/egl_vendor.d/10_nvidia.json",
+          "system_commands": [
+            "mkdir -p /usr/share/glvnd/egl_vendor.d/",
+            "echo {    \"file_format_version\" : \"1.0.0\",    \"ICD\" : {        \"library_path\" : \"libEGL_nvidia.so.0\"    }} > /usr/share/glvnd/egl_vendor.d/10_nvidia.json"
+          ],
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "RUN",
+          "time": "2020-12-05T00:33:15Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 110,
+          "size_human": "110 B",
+          "command_snippet": "RUN mkdir -p /usr/share/egl/egl_external_pla...",
+          "command_all": "RUN mkdir -p /usr/share/egl/egl_external_platform.d/ && echo {    \"file_format_version\" : \"1.0.0\",    \"ICD\" : {        \"library_path\" : \"libnvidia-egl-wayland.so.1\"    }} > /usr/share/egl/egl_external_platform.d/nvidia_wayland.json",
+          "system_commands": [
+            "mkdir -p /usr/share/egl/egl_external_platform.d/",
+            "echo {    \"file_format_version\" : \"1.0.0\",    \"ICD\" : {        \"library_path\" : \"libnvidia-egl-wayland.so.1\"    }} > /usr/share/egl/egl_external_platform.d/nvidia_wayland.json"
+          ],
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "RUN",
+          "time": "2020-12-05T00:33:17Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 47,
+          "size_human": "47 B",
+          "command_snippet": "RUN echo /usr/local/cuda-$CUDA/targets/aarch...",
+          "command_all": "RUN echo /usr/local/cuda-$CUDA/targets/aarch64-linux/lib >> /etc/ld.so.conf.d/nvidia.conf",
+          "system_commands": [
+            "echo /usr/local/cuda-$CUDA/targets/aarch64-linux/lib >> /etc/ld.so.conf.d/nvidia.conf"
+          ],
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "ARG",
+          "time": "2020-12-05T00:33:18Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "CUDA=invalid",
+          "command_snippet": "ARG CUDA=invalid",
+          "command_all": "ARG CUDA=invalid",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "COPY",
+          "time": "2020-12-05T00:33:20Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 51191284,
+          "size_human": "51 MB",
+          "params": "dir:7587fc5dd8a928d829a26a75b511ee6bdb4cf66c04c3d755b093591eed01b08c in /usr/local/cuda-$CUDA/bin",
+          "command_snippet": "COPY dir:7587fc5dd8a928d829a26a75b511ee6bdb4...",
+          "command_all": "COPY dir:7587fc5dd8a928d829a26a75b511ee6bdb4cf66c04c3d755b093591eed01b08c /usr/local/cuda-$CUDA/bin",
+          "target": "/usr/local/cuda-$CUDA/bin",
+          "source_type": "dir",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "COPY",
+          "time": "2020-12-05T00:33:23Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 35442918,
+          "size_human": "35 MB",
+          "params": "dir:e32f3b7fcde87a87fe2f7465a69eb3fc13d259e8b20c8172e894272eabc85e1f in /usr/local/cuda-$CUDA/nvvm",
+          "command_snippet": "COPY dir:e32f3b7fcde87a87fe2f7465a69eb3fc13d...",
+          "command_all": "COPY dir:e32f3b7fcde87a87fe2f7465a69eb3fc13d259e8b20c8172e894272eabc85e1f /usr/local/cuda-$CUDA/nvvm",
+          "target": "/usr/local/cuda-$CUDA/nvvm",
+          "source_type": "dir",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "COPY",
+          "time": "2020-12-05T00:33:25Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 499594,
+          "size_human": "500 kB",
+          "params": "dir:a0637cf45e075d18bb96ce70e39469fce9686493be07b867676339701ca58fb3 in /usr/local/cuda-$CUDA/nvvmx",
+          "command_snippet": "COPY dir:a0637cf45e075d18bb96ce70e39469fce96...",
+          "command_all": "COPY dir:a0637cf45e075d18bb96ce70e39469fce9686493be07b867676339701ca58fb3 /usr/local/cuda-$CUDA/nvvmx",
+          "target": "/usr/local/cuda-$CUDA/nvvmx",
+          "source_type": "dir",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "COPY",
+          "time": "2020-12-05T00:33:27Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 22056555,
+          "size_human": "22 MB",
+          "params": "dir:e1e3f6e9fb5204aa00d69a1ed5ac5a11ef7357c003a1c738d41e580697a9434a in /usr/local/cuda-$CUDA/targets/aarch64-linux/include",
+          "command_snippet": "COPY dir:e1e3f6e9fb5204aa00d69a1ed5ac5a11ef7...",
+          "command_all": "COPY dir:e1e3f6e9fb5204aa00d69a1ed5ac5a11ef7357c003a1c738d41e580697a9434a /usr/local/cuda-$CUDA/targets/aarch64-linux/include",
+          "target": "/usr/local/cuda-$CUDA/targets/aarch64-linux/include",
+          "source_type": "dir",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "COPY",
+          "time": "2020-12-05T00:33:28Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 1311856,
+          "size_human": "1.3 MB",
+          "params": "dir:6a3e45f905edc398f0103ff62426e8c2ced5db16892ad4c923d9ff08291af7fe in /usr/local/cuda-$CUDA/targets/aarch64-linux/lib/stubs",
+          "command_snippet": "COPY dir:6a3e45f905edc398f0103ff62426e8c2ced...",
+          "command_all": "COPY dir:6a3e45f905edc398f0103ff62426e8c2ced5db16892ad4c923d9ff08291af7fe /usr/local/cuda-$CUDA/targets/aarch64-linux/lib/stubs",
+          "target": "/usr/local/cuda-$CUDA/targets/aarch64-linux/lib/stubs",
+          "source_type": "dir",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "COPY",
+          "time": "2020-12-05T00:33:29Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 677036,
+          "size_human": "677 kB",
+          "params": "file:871f8397165f3ba123aa0045e7fea8ce4053ea941477a81d70a8148fd957e55c in /usr/local/cuda-$CUDA/targets/aarch64-linux/lib/",
+          "command_snippet": "COPY file:871f8397165f3ba123aa0045e7fea8ce40...",
+          "command_all": "COPY file:871f8397165f3ba123aa0045e7fea8ce4053ea941477a81d70a8148fd957e55c /usr/local/cuda-$CUDA/targets/aarch64-linux/lib/",
+          "target": "/usr/local/cuda-$CUDA/targets/aarch64-linux/lib/",
+          "source_type": "file",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "COPY",
+          "time": "2020-12-05T00:33:31Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 786194,
+          "size_human": "786 kB",
+          "params": "file:323b1423f1cbe16796303524b635ea174dfbdcd0c74d18b2844dd63cf484441b in /usr/local/cuda-$CUDA/targets/aarch64-linux/lib/",
+          "command_snippet": "COPY file:323b1423f1cbe16796303524b635ea174d...",
+          "command_all": "COPY file:323b1423f1cbe16796303524b635ea174dfbdcd0c74d18b2844dd63cf484441b /usr/local/cuda-$CUDA/targets/aarch64-linux/lib/",
+          "target": "/usr/local/cuda-$CUDA/targets/aarch64-linux/lib/",
+          "source_type": "file",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "RUN",
+          "time": "2020-12-05T00:33:32Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 116,
+          "size_human": "116 B",
+          "command_snippet": "RUN ln -s /usr/local/cuda-$CUDA /usr/local/c...",
+          "command_all": "RUN ln -s /usr/local/cuda-$CUDA /usr/local/cuda && ln -s /usr/local/cuda-$CUDA/targets/aarch64-linux/include /usr/local/cuda/include && ln -s /usr/local/cuda-$CUDA/targets/aarch64-linux/lib /usr/local/cuda/lib64",
+          "system_commands": [
+            "ln -s /usr/local/cuda-$CUDA /usr/local/cuda",
+            "ln -s /usr/local/cuda-$CUDA/targets/aarch64-linux/include /usr/local/cuda/include",
+            "ln -s /usr/local/cuda-$CUDA/targets/aarch64-linux/lib /usr/local/cuda/lib64"
+          ],
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "ENV",
+          "time": "2020-12-05T00:33:33Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "PATH /usr/local/cuda-$CUDA/bin:/usr/local/cuda/bin:${PATH}",
+          "command_snippet": "ENV PATH /usr/local/cuda-$CUDA/bin:/usr/loca...",
+          "command_all": "ENV PATH /usr/local/cuda-$CUDA/bin:/usr/local/cuda/bin:${PATH}",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "ENV",
+          "time": "2020-12-05T00:33:34Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "LD_LIBRARY_PATH /usr/local/cuda-$CUDA/targets/aarch64-linux/lib:${LD_LIBRARY_PATH}",
+          "command_snippet": "ENV LD_LIBRARY_PATH /usr/local/cuda-$CUDA/ta...",
+          "command_all": "ENV LD_LIBRARY_PATH /usr/local/cuda-$CUDA/targets/aarch64-linux/lib:${LD_LIBRARY_PATH}",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "RUN",
+          "time": "2020-12-05T00:33:35Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 72072,
+          "size_human": "72 kB",
+          "command_snippet": "RUN ldconfig",
+          "command_all": "RUN ldconfig",
+          "system_commands": [
+            "ldconfig"
+          ],
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "ENV",
+          "time": "2020-12-05T00:33:36Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "NVIDIA_VISIBLE_DEVICES all",
+          "command_snippet": "ENV NVIDIA_VISIBLE_DEVICES all",
+          "command_all": "ENV NVIDIA_VISIBLE_DEVICES all",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "ENV",
+          "time": "2020-12-05T00:33:37Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "NVIDIA_DRIVER_CAPABILITIES all",
+          "command_snippet": "ENV NVIDIA_DRIVER_CAPABILITIES all",
+          "command_all": "ENV NVIDIA_DRIVER_CAPABILITIES all",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "CMD",
+          "time": "2020-12-05T00:33:38Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"/bin/bash\"]\n",
+          "command_snippet": "CMD [\"/bin/bash\"]\n",
+          "command_all": "CMD [\"/bin/bash\"]\n",
+          "inst_set_time_bucket": "2020-12-04T18:30:00-06:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 7
+        },
+        {
+          "type": "ARG",
+          "time": "2021-05-27T14:41:59Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "ROS_PKG=ros_base",
+          "command_snippet": "ARG ROS_PKG=ros_base",
+          "command_all": "ARG ROS_PKG=ros_base",
+          "inst_set_time_bucket": "2021-05-27T09:30:00-05:00",
+          "inst_set_time_index": 3,
+          "inst_set_time_reverse_index": 6
+        },
+        {
+          "type": "ENV",
+          "time": "2021-05-27T15:44:31Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "ROS_DISTRO=foxy",
+          "command_snippet": "ENV ROS_DISTRO=foxy",
+          "command_all": "ENV ROS_DISTRO=foxy",
+          "inst_set_time_bucket": "2021-05-27T10:30:00-05:00",
+          "inst_set_time_index": 4,
+          "inst_set_time_reverse_index": 5
+        },
+        {
+          "type": "ENV",
+          "time": "2021-05-27T15:44:31Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "ROS_ROOT=/opt/ros/foxy",
+          "command_snippet": "ENV ROS_ROOT=/opt/ros/foxy",
+          "command_all": "ENV ROS_ROOT=/opt/ros/foxy",
+          "inst_set_time_bucket": "2021-05-27T10:30:00-05:00",
+          "inst_set_time_index": 4,
+          "inst_set_time_reverse_index": 5
+        },
+        {
+          "type": "ENV",
+          "time": "2021-05-27T15:44:31Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "DEBIAN_FRONTEND=noninteractive",
+          "command_snippet": "ENV DEBIAN_FRONTEND=noninteractive",
+          "command_all": "ENV DEBIAN_FRONTEND=noninteractive",
+          "inst_set_time_bucket": "2021-05-27T10:30:00-05:00",
+          "inst_set_time_index": 4,
+          "inst_set_time_reverse_index": 5
+        },
+        {
+          "type": "ENV",
+          "time": "2021-07-19T14:25:25Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "SHELL=/bin/bash",
+          "command_snippet": "ENV SHELL=/bin/bash",
+          "command_all": "ENV SHELL=/bin/bash",
+          "inst_set_time_bucket": "2021-07-19T09:15:00-05:00",
+          "inst_set_time_index": 5,
+          "inst_set_time_reverse_index": 4
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-19T14:25:25Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T09:15:00-05:00",
+          "inst_set_time_index": 5,
+          "inst_set_time_reverse_index": 4
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-19T14:25:25Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T09:15:00-05:00",
+          "inst_set_time_index": 5,
+          "inst_set_time_reverse_index": 4
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-19T14:25:28Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 3429436,
+          "size_human": "3.4 MB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"locale-gen\",\"en_US\",\"...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"locale-gen\",\"en_US\",\"en_US.UTF-8\",\"&&\",\"update-locale\",\"LC_ALL=en_US.UTF-8\",\"LANG=en_US.UTF-8\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"locale-gen\",\"en_US\",\"en_US.UTF-8\",\"",
+            "\",\"update-locale\",\"LC_ALL=en_US.UTF-8\",\"LANG=en_US.UTF-8\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T09:15:00-05:00",
+          "inst_set_time_index": 5,
+          "inst_set_time_reverse_index": 4
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-19T14:25:29Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T09:15:00-05:00",
+          "inst_set_time_index": 5,
+          "inst_set_time_reverse_index": 4
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-19T14:25:29Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T09:15:00-05:00",
+          "inst_set_time_index": 5,
+          "inst_set_time_reverse_index": 4
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-19T14:25:46Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 11751630,
+          "size_human": "12 MB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"apt-get\",\"update\",\"&&...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"apt-get\",\"update\",\"&&\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"curl\",\"wget\",\"gnupg2\",\"lsb-release\",\"ca-certificates\",\"&&\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\",\"&&\",\"apt-get\",\"clean\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"apt-get\",\"update\",\"",
+            "\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"curl\",\"wget\",\"gnupg2\",\"lsb-release\",\"ca-certificates\",\"",
+            "\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\",\"",
+            "\",\"apt-get\",\"clean\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T09:15:00-05:00",
+          "inst_set_time_index": 5,
+          "inst_set_time_reverse_index": 4
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-19T14:25:48Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 109289,
+          "size_human": "109 kB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"curl\",\"-sSL\",\"https:/...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"curl\",\"-sSL\",\"https://raw.githubusercontent.com/ros/rosdistro/master/ros.key\",\"-o\",\"/usr/share/keyrings/ros-archive-keyring.gpg\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"curl\",\"-sSL\",\"https://raw.githubusercontent.com/ros/rosdistro/master/ros.key\",\"-o\",\"/usr/share/keyrings/ros-archive-keyring.gpg\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T09:15:00-05:00",
+          "inst_set_time_index": 5,
+          "inst_set_time_reverse_index": 4
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-19T14:25:50Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 117247,
+          "size_human": "117 kB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"echo\",\"deb [arch=$(dp...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"echo\",\"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main\",\"|\",\"tee\",\"/etc/apt/sources.list.d/ros2.list\",\">\",\"/dev/null\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"echo\",\"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main\",\"|\",\"tee\",\"/etc/apt/sources.list.d/ros2.list\",\">\",\"/dev/null\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T09:15:00-05:00",
+          "inst_set_time_index": 5,
+          "inst_set_time_reverse_index": 4
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-20T00:57:07Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 1206714191,
+          "size_human": "1.2 GB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"apt-get\",\"update\",\"&&...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"apt-get\",\"update\",\"&&\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"build-essential\",\"cmake\",\"git\",\"libbullet-dev\",\"libpython3-dev\",\"python3-colcon-common-extensions\",\"python3-flake8\",\"python3-pip\",\"python3-numpy\",\"python3-pytest-cov\",\"python3-rosdep\",\"python3-setuptools\",\"python3-vcstool\",\"python3-rosinstall-generator\",\"libasio-dev\",\"libtinyxml2-dev\",\"libcunit1-dev\",\"libgazebo9-dev\",\"gazebo9\",\"gazebo9-common\",\"gazebo9-plugin-base\",\"&&\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\",\"&&\",\"apt-get\",\"clean\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"apt-get\",\"update\",\"",
+            "\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"build-essential\",\"cmake\",\"git\",\"libbullet-dev\",\"libpython3-dev\",\"python3-colcon-common-extensions\",\"python3-flake8\",\"python3-pip\",\"python3-numpy\",\"python3-pytest-cov\",\"python3-rosdep\",\"python3-setuptools\",\"python3-vcstool\",\"python3-rosinstall-generator\",\"libasio-dev\",\"libtinyxml2-dev\",\"libcunit1-dev\",\"libgazebo9-dev\",\"gazebo9\",\"gazebo9-common\",\"gazebo9-plugin-base\",\"",
+            "\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\",\"",
+            "\",\"apt-get\",\"clean\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T19:45:00-05:00",
+          "inst_set_time_index": 6,
+          "inst_set_time_reverse_index": 3
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-20T00:57:31Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 13677827,
+          "size_human": "14 MB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"python3\",\"-m\",\"pip\",\"...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"python3\",\"-m\",\"pip\",\"install\",\"-U\",\"argcomplete\",\"flake8-blind-except\",\"flake8-builtins\",\"flake8-class-newline\",\"flake8-comprehensions\",\"flake8-deprecated\",\"flake8-docstrings\",\"flake8-import-order\",\"flake8-quotes\",\"pytest-repeat\",\"pytest-rerunfailures\",\"pytest\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"python3\",\"-m\",\"pip\",\"install\",\"-U\",\"argcomplete\",\"flake8-blind-except\",\"flake8-builtins\",\"flake8-class-newline\",\"flake8-comprehensions\",\"flake8-deprecated\",\"flake8-docstrings\",\"flake8-import-order\",\"flake8-quotes\",\"pytest-repeat\",\"pytest-rerunfailures\",\"pytest\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T19:45:00-05:00",
+          "inst_set_time_index": 6,
+          "inst_set_time_reverse_index": 3
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-20T00:57:31Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T19:45:00-05:00",
+          "inst_set_time_index": 6,
+          "inst_set_time_reverse_index": 3
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-20T00:57:31Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-19T19:45:00-05:00",
+          "inst_set_time_index": 6,
+          "inst_set_time_reverse_index": 3
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-30T16:20:39Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 463173808,
+          "size_human": "463 MB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"apt-get\",\"purge\",\"-y\"...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"apt-get\",\"purge\",\"-y\",\"*opencv*\",\"||\",\"echo\",\"previous OpenCV installation not found\",\"&&\",\"mkdir\",\"opencv\",\"&&\",\"cd\",\"opencv\",\"&&\",\"wget\",\"--quiet\",\"--show-progress\",\"--progress=bar:force:noscroll\",\"--no-check-certificate\",\"${OPENCV_URL}\",\"-O\",\"${OPENCV_DEB}\",\"&&\",\"tar\",\"-xzvf\",\"${OPENCV_DEB}\",\"&&\",\"dpkg\",\"-i\",\"--force-depends\",\"*.deb\",\"&&\",\"apt-get\",\"update\",\"&&\",\"apt-get\",\"install\",\"-y\",\"-f\",\"--no-install-recommends\",\"&&\",\"dpkg\",\"-i\",\"*.deb\",\"&&\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\",\"&&\",\"apt-get\",\"clean\",\"&&\",\"cd\",\"../\",\"&&\",\"rm\",\"-rf\",\"opencv\",\"&&\",\"cp\",\"-r\",\"/usr/include/opencv4\",\"/usr/local/include/opencv4\",\"&&\",\"cp\",\"-r\",\"/usr/lib/python3.6/dist-packages/cv2\",\"/usr/local/lib/python3.6/dist-packages/cv2\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"apt-get\",\"purge\",\"-y\",\"*opencv*\",\"||\",\"echo\",\"previous OpenCV installation not found\",\"",
+            "\",\"mkdir\",\"opencv\",\"",
+            "\",\"cd\",\"opencv\",\"",
+            "\",\"wget\",\"--quiet\",\"--show-progress\",\"--progress=bar:force:noscroll\",\"--no-check-certificate\",\"${OPENCV_URL}\",\"-O\",\"${OPENCV_DEB}\",\"",
+            "\",\"tar\",\"-xzvf\",\"${OPENCV_DEB}\",\"",
+            "\",\"dpkg\",\"-i\",\"--force-depends\",\"*.deb\",\"",
+            "\",\"apt-get\",\"update\",\"",
+            "\",\"apt-get\",\"install\",\"-y\",\"-f\",\"--no-install-recommends\",\"",
+            "\",\"dpkg\",\"-i\",\"*.deb\",\"",
+            "\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\",\"",
+            "\",\"apt-get\",\"clean\",\"",
+            "\",\"cd\",\"../\",\"",
+            "\",\"rm\",\"-rf\",\"opencv\",\"",
+            "\",\"cp\",\"-r\",\"/usr/include/opencv4\",\"/usr/local/include/opencv4\",\"",
+            "\",\"cp\",\"-r\",\"/usr/lib/python3.6/dist-packages/cv2\",\"/usr/local/lib/python3.6/dist-packages/cv2\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-30T11:15:00-05:00",
+          "inst_set_time_index": 7,
+          "inst_set_time_reverse_index": 2
+        },
+        {
+          "type": "RUN",
+          "time": "2021-07-30T16:22:49Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 36603948,
+          "size_human": "37 MB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"git\",\"clone\",\"--branc...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"git\",\"clone\",\"--branch\",\"yaml-cpp-0.6.0\",\"https://github.com/jbeder/yaml-cpp\",\"yaml-cpp-0.6\",\"&&\",\"cd\",\"yaml-cpp-0.6\",\"&&\",\"mkdir\",\"build\",\"&&\",\"cd\",\"build\",\"&&\",\"cmake\",\"-DBUILD_SHARED_LIBS=ON\",\"..\",\"&&\",\"make\",\"-j$(nproc)\",\"&&\",\"cp\",\"libyaml-cpp.so.0.6.0\",\"/usr/lib/aarch64-linux-gnu/\",\"&&\",\"ln\",\"-s\",\"/usr/lib/aarch64-linux-gnu/libyaml-cpp.so.0.6.0\",\"/usr/lib/aarch64-linux-gnu/libyaml-cpp.so.0.6\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"git\",\"clone\",\"--branch\",\"yaml-cpp-0.6.0\",\"https://github.com/jbeder/yaml-cpp\",\"yaml-cpp-0.6\",\"",
+            "\",\"cd\",\"yaml-cpp-0.6\",\"",
+            "\",\"mkdir\",\"build\",\"",
+            "\",\"cd\",\"build\",\"",
+            "\",\"cmake\",\"-DBUILD_SHARED_LIBS=ON\",\"..\",\"",
+            "\",\"make\",\"-j$(nproc)\",\"",
+            "\",\"cp\",\"libyaml-cpp.so.0.6.0\",\"/usr/lib/aarch64-linux-gnu/\",\"",
+            "\",\"ln\",\"-s\",\"/usr/lib/aarch64-linux-gnu/libyaml-cpp.so.0.6.0\",\"/usr/lib/aarch64-linux-gnu/libyaml-cpp.so.0.6\"]"
+          ],
+          "inst_set_time_bucket": "2021-07-30T11:15:00-05:00",
+          "inst_set_time_index": 7,
+          "inst_set_time_reverse_index": 2
+        },
+        {
+          "type": "RUN",
+          "time": "2021-08-05T23:01:20Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 730328395,
+          "size_human": "730 MB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"mkdir\",\"-p\",\"${ROS_RO...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"mkdir\",\"-p\",\"${ROS_ROOT}/src\",\"&&\",\"cd\",\"${ROS_ROOT}\",\"&&\",\"rosinstall_generator\",\"--deps\",\"--rosdistro\",\"${ROS_DISTRO}\",\"${ROS_PKG}\",\"launch_xml\",\"launch_yaml\",\"launch_testing\",\"launch_testing_ament_cmake\",\"demo_nodes_cpp\",\"demo_nodes_py\",\"example_interfaces\",\"camera_calibration_parsers\",\"camera_info_manager\",\"cv_bridge\",\"v4l2_camera\",\"vision_opencv\",\"vision_msgs\",\"image_geometry\",\"image_pipeline\",\"image_transport\",\"compressed_image_transport\",\"compressed_depth_image_transport\",\">\",\"ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall\",\"&&\",\"cat\",\"ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall\",\"&&\",\"vcs\",\"import\",\"src\",\"<\",\"ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall\",\"&&\",\"rm\",\"${ROS_ROOT}/src/libyaml_vendor/CMakeLists.txt\",\"&&\",\"wget\",\"--no-check-certificate\",\"https://raw.githubusercontent.com/ros2/libyaml_vendor/master/CMakeLists.txt\",\"-P\",\"${ROS_ROOT}/src/libyaml_vendor/\",\"&&\",\"apt-get\",\"update\",\"&&\",\"cd\",\"${ROS_ROOT}\",\"&&\",\"rosdep\",\"init\",\"&&\",\"rosdep\",\"update\",\"&&\",\"rosdep\",\"install\",\"-y\",\"--ignore-src\",\"--from-paths\",\"src\",\"--rosdistro\",\"${ROS_DISTRO}\",\"--skip-keys\",\"libopencv-dev libopencv-contrib-dev libopencv-imgproc-dev python-opencv python3-opencv\",\"&&\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\",\"&&\",\"apt-get\",\"clean\",\"&&\",\"colcon\",\"build\",\"--merge-install\",\"&&\",\"rm\",\"-rf\",\"${ROS_ROOT}/src\",\"&&\",\"rm\",\"-rf\",\"${ROS_ROOT}/logs\",\"&&\",\"rm\",\"-rf\",\"${ROS_ROOT}/build\",\"&&\",\"rm\",\"${ROS_ROOT}/*.rosinstall\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"mkdir\",\"-p\",\"${ROS_ROOT}/src\",\"",
+            "\",\"cd\",\"${ROS_ROOT}\",\"",
+            "\",\"rosinstall_generator\",\"--deps\",\"--rosdistro\",\"${ROS_DISTRO}\",\"${ROS_PKG}\",\"launch_xml\",\"launch_yaml\",\"launch_testing\",\"launch_testing_ament_cmake\",\"demo_nodes_cpp\",\"demo_nodes_py\",\"example_interfaces\",\"camera_calibration_parsers\",\"camera_info_manager\",\"cv_bridge\",\"v4l2_camera\",\"vision_opencv\",\"vision_msgs\",\"image_geometry\",\"image_pipeline\",\"image_transport\",\"compressed_image_transport\",\"compressed_depth_image_transport\",\">\",\"ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall\",\"",
+            "\",\"cat\",\"ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall\",\"",
+            "\",\"vcs\",\"import\",\"src\",\"<\",\"ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall\",\"",
+            "\",\"rm\",\"${ROS_ROOT}/src/libyaml_vendor/CMakeLists.txt\",\"",
+            "\",\"wget\",\"--no-check-certificate\",\"https://raw.githubusercontent.com/ros2/libyaml_vendor/master/CMakeLists.txt\",\"-P\",\"${ROS_ROOT}/src/libyaml_vendor/\",\"",
+            "\",\"apt-get\",\"update\",\"",
+            "\",\"cd\",\"${ROS_ROOT}\",\"",
+            "\",\"rosdep\",\"init\",\"",
+            "\",\"rosdep\",\"update\",\"",
+            "\",\"rosdep\",\"install\",\"-y\",\"--ignore-src\",\"--from-paths\",\"src\",\"--rosdistro\",\"${ROS_DISTRO}\",\"--skip-keys\",\"libopencv-dev libopencv-contrib-dev libopencv-imgproc-dev python-opencv python3-opencv\",\"",
+            "\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\",\"",
+            "\",\"apt-get\",\"clean\",\"",
+            "\",\"colcon\",\"build\",\"--merge-install\",\"",
+            "\",\"rm\",\"-rf\",\"${ROS_ROOT}/src\",\"",
+            "\",\"rm\",\"-rf\",\"${ROS_ROOT}/logs\",\"",
+            "\",\"rm\",\"-rf\",\"${ROS_ROOT}/build\",\"",
+            "\",\"rm\",\"${ROS_ROOT}/*.rosinstall\"]"
+          ],
+          "inst_set_time_bucket": "2021-08-05T18:00:00-05:00",
+          "inst_set_time_index": 8,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2021-08-05T23:01:21Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2021-08-05T18:00:00-05:00",
+          "inst_set_time_index": 8,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2021-08-05T23:01:22Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 195,
+          "size_human": "195 B",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2021-08-05T18:00:00-05:00",
+          "inst_set_time_index": 8,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2021-08-05T23:01:23Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 199179,
+          "size_human": "199 kB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"sed\",\"-i\",\"s/ros_env_...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"sed\",\"-i\",\"s/ros_env_setup=\\\"\\\\/opt\\\\/ros\\\\/$ROS_DISTRO\\\\/setup.bash\\\"/ros_env_setup=\\\"${ROS_ROOT}\\\\/install\\\\/setup.bash\\\"/g\",\"/ros_entrypoint.sh\",\"&&\",\"cat\",\"/ros_entrypoint.sh\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"sed\",\"-i\",\"s/ros_env_setup=\"/opt/ros/$ROS_DISTRO/setup.bash\"/ros_env_setup=\"${ROS_ROOT}/install/setup.bash\"/g\",\"/ros_entrypoint.sh\",\"",
+            "\",\"cat\",\"/ros_entrypoint.sh\"]"
+          ],
+          "inst_set_time_bucket": "2021-08-05T18:00:00-05:00",
+          "inst_set_time_index": 8,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2021-08-05T23:01:24Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 202129,
+          "size_human": "202 kB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"echo\",\"source ${ROS_R...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"echo\",\"source ${ROS_ROOT}/install/setup.bash\",\">>\",\"/root/.bashrc\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"echo\",\"source ${ROS_ROOT}/install/setup.bash\",\">>\",\"/root/.bashrc\"]"
+          ],
+          "inst_set_time_bucket": "2021-08-05T18:00:00-05:00",
+          "inst_set_time_index": 8,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2021-08-05T23:01:25Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2021-08-05T18:00:00-05:00",
+          "inst_set_time_index": 8,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2021-08-05T23:01:25Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2021-08-05T18:00:00-05:00",
+          "inst_set_time_index": 8,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2021-08-05T23:01:25Z",
+          "is_last_instruction": true,
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "raw_tags": [
+            "dustynv/ros:foxy-ros-base-l4t-r32.5.0"
+          ],
+          "inst_set_time_bucket": "2021-08-05T18:00:00-05:00",
+          "inst_set_time_index": 8,
+          "inst_set_time_reverse_index": 1
+        }
+      ]
+    },
+    {
+      "is_top_image": true,
+      "id": "sha256:f0a72b01aafa020e26f280d1d555747d7a82aec0d0dcde2be2ef589bad390359",
+      "full_name": "matvalverde/unitree_cam:latest",
+      "repo_name": "matvalverde/unitree_cam",
+      "version_tag": "latest",
+      "raw_tags": [
+        "matvalverde/unitree_cam:latest"
+      ],
+      "create_time": "2023-06-10T14:39:38Z",
+      "new_size": 73183434,
+      "new_size_human": "73 MB",
+      "base_image_id": "sha256:271f802bf86370562eb07b00e7cad26ac0af7f7eddd5e9b1bf3287ec0fbb83c9",
+      "instructions": [
+        {
+          "type": "RUN",
+          "time": "2023-06-10T14:38:55Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:866bcc24da3c456809870bd609ff9ec13eac670fe567416a9736d59ecfe8da84",
+          "layer_index": 0,
+          "size": 22286168,
+          "size_human": "22 MB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"apt-get\",\"update\",\"&&...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"apt-get\",\"update\",\"&&\",\"apt-get\",\"install\",\"--no-install-recommends\",\"-y\",\"libudev-dev\",\"&&\",\"apt-get\",\"remove\",\"thunderbird\",\"libreoffice-*\",\"&&\",\"apt-get\",\"clean\",\"&&\",\"apt-get\",\"autoclean\",\"&&\",\"apt-get\",\"autoremove\",\"&&\",\"rm\",\"-rf\",\"/app/wheels\",\"&&\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\",\"&&\",\"mkdir\",\"-p\",\"workspace/ros2_ws/src\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"apt-get\",\"update\",\"",
+            "\",\"apt-get\",\"install\",\"--no-install-recommends\",\"-y\",\"libudev-dev\",\"",
+            "\",\"apt-get\",\"remove\",\"thunderbird\",\"libreoffice-*\",\"",
+            "\",\"apt-get\",\"clean\",\"",
+            "\",\"apt-get\",\"autoclean\",\"",
+            "\",\"apt-get\",\"autoremove\",\"",
+            "\",\"rm\",\"-rf\",\"/app/wheels\",\"",
+            "\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\",\"",
+            "\",\"mkdir\",\"-p\",\"workspace/ros2_ws/src\"]"
+          ],
+          "inst_set_time_bucket": "2023-06-10T09:30:00-05:00",
+          "inst_set_time_index": 9,
+          "inst_set_time_reverse_index": 0
+        },
+        {
+          "type": "RUN",
+          "time": "2023-06-10T14:38:56Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:d1f4fbb52c1605a0ce2ed430173ee3a1a48cf79445282ff490b79fb628f4b709",
+          "layer_index": 0,
+          "size": 23337592,
+          "size_human": "23 MB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\"]"
+          ],
+          "inst_set_time_bucket": "2023-06-10T09:30:00-05:00",
+          "inst_set_time_index": 9,
+          "inst_set_time_reverse_index": 0
+        },
+        {
+          "type": "RUN",
+          "time": "2023-06-10T14:39:37Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:937c2a9f14b98703b52582d545f821c346ee18b5d18d026494b5714987890b21",
+          "layer_index": 0,
+          "size": 27559674,
+          "size_human": "28 MB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\".\",\"/opt/ros/$ROS_DIS...",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\".\",\"/opt/ros/$ROS_DISTRO/install/setup.sh\",\"&&\",\"cd\",\"workspace/ros2_ws\",\"&&\",\"colcon\",\"build\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\".\",\"/opt/ros/$ROS_DISTRO/install/setup.sh\",\"",
+            "\",\"cd\",\"workspace/ros2_ws\",\"",
+            "\",\"colcon\",\"build\"]"
+          ],
+          "inst_set_time_bucket": "2023-06-10T09:30:00-05:00",
+          "inst_set_time_index": 9,
+          "inst_set_time_reverse_index": 0
+        },
+        {
+          "type": "RUN",
+          "time": "2023-06-10T14:39:38Z",
+          "is_last_instruction": true,
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-c\",\"echo\",\"ALL DONE!\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-c\",\"echo\",\"ALL DONE!\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-c\",\"echo\",\"ALL DONE!\"]"
+          ],
+          "raw_tags": [
+            "matvalverde/unitree_cam:latest"
+          ],
+          "inst_set_time_bucket": "2023-06-10T09:30:00-05:00",
+          "inst_set_time_index": 9,
+          "inst_set_time_reverse_index": 0
+        }
+      ]
+    }
+  ],
+  "image_created": true,
+  "image_build_engine": "docker"
+}
