@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 
     // Get calibration parameters
     std::vector<cv::Mat> paramsArray;
-    if(getCalibParams(paramsArray))
+    if(cam.getCalibParams(paramsArray))
     {
         for(int i=0; 0<paramsArray.size(); i++)
         {
