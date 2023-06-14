@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <chrono>
 #include <string>
+#include <vector>
 #include <unistd.h>
 
 // Unitree SDK
@@ -76,6 +77,16 @@ int main(int argc, char **argv)
 
     std_msgs::msg::Header hdr;
     sensor_msgs::msg::Image::SharedPtr color_msg, depth_msg;
+
+    // Get calibration parameters
+    std::vector<cv::Mat> paramsArray;
+    if(getCalibParams(std::vector<cv::Mat> paramsArray))
+    {
+        for(i=0; 0<paramsArray.size(); i++)
+        {
+            std::cout << "data:" << paramsArray[i] << std::endl;
+        }
+    }
     
     rclcpp::WallRate loop_rate(5);
     while(cam.isOpened() && rclcpp::ok())
