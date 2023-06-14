@@ -80,9 +80,9 @@ int main(int argc, char **argv)
 
     // Get calibration parameters
     std::vector<cv::Mat> paramsArray;
-    if(getCalibParams(std::vector<cv::Mat> paramsArray))
+    if(getCalibParams(paramsArray))
     {
-        for(i=0; 0<paramsArray.size(); i++)
+        for(int i=0; 0<paramsArray.size(); i++)
         {
             std::cout << "data:" << paramsArray[i] << std::endl;
         }
