@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <chrono>
 #include <string>
+#include <vector>
 #include <unistd.h>
 
 // Unitree SDK
@@ -76,6 +77,16 @@ int main(int argc, char **argv)
 
     std_msgs::msg::Header hdr;
     sensor_msgs::msg::Image::SharedPtr color_msg, depth_msg;
+
+    // Get calibration parameters
+    std::vector<cv::Mat> paramsArray;
+    if(getCalibParams(std::vector<cv::Mat> paramsArray))
+    {
+        for(i=0; 0<paramsArray.size(); i++)
+        {
+            std::cout << "data:" << paramsArray[i] << std::endl;
+        }
+    }
     
     rclcpp::WallRate loop_rate(5);
     while(cam.isOpened() && rclcpp::ok())
@@ -88,13 +99,17 @@ int main(int argc, char **argv)
             continue;
         }
 
-        if(!cam.getDepthFrame(depth, true, t)){  ///< get stereo camera depth image 
+        if(!cam.getDepthFrame(depth, false, t)){  ///< get stereo camera depth image 
             usleep(1000);
             continue;
         }
 
         if (!left.empty())
         {
+            // Debug depth image type
+            std::string ty =  type2str( left.type() );
+            printf("Depth: %s %dx%d \n", ty.c_str(), left.cols, left.rows);
+
             color_msg = cv_bridge::CvImage(hdr, "bgr8", left).toImageMsg();
             color_pub.publish(color_msg);
             cv::waitKey(1);
@@ -102,9 +117,9 @@ int main(int argc, char **argv)
 
         if (!depth.empty())
         {
-            // Depbug depth image type
+            // Debug depth image type
             std::string ty =  type2str( depth.type() );
-            printf("Depth: %s %dx%d \n", ty.c_str(), depth.cols, depth.rows );
+            printf("Depth: %s %dx%d \n", ty.c_str(), depth.cols, depth.rows);
 
             depth_msg = cv_bridge::CvImage(hdr, "mono16", depth).toImageMsg();
             depth_pub.publish(depth_msg);
