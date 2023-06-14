@@ -88,13 +88,17 @@ int main(int argc, char **argv)
             continue;
         }
 
-        if(!cam.getDepthFrame(depth, true, t)){  ///< get stereo camera depth image 
+        if(!cam.getDepthFrame(depth, false, t)){  ///< get stereo camera depth image 
             usleep(1000);
             continue;
         }
 
         if (!left.empty())
         {
+            // Debug depth image type
+            std::string ty =  type2str( left.type() );
+            printf("Depth: %s %dx%d \n", ty.c_str(), left.cols, left.rows);
+
             color_msg = cv_bridge::CvImage(hdr, "bgr8", left).toImageMsg();
             color_pub.publish(color_msg);
             cv::waitKey(1);
@@ -102,9 +106,9 @@ int main(int argc, char **argv)
 
         if (!depth.empty())
         {
-            // Depbug depth image type
+            // Debug depth image type
             std::string ty =  type2str( depth.type() );
-            printf("Depth: %s %dx%d \n", ty.c_str(), depth.cols, depth.rows );
+            printf("Depth: %s %dx%d \n", ty.c_str(), depth.cols, depth.rows);
 
             depth_msg = cv_bridge::CvImage(hdr, "mono16", depth).toImageMsg();
             depth_pub.publish(depth_msg);
