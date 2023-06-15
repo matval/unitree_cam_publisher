@@ -77,7 +77,7 @@ int main(int argc, char **argv)
 
     std_msgs::msg::Header image_header;
     sensor_msgs::msg::Image::SharedPtr color_msg, depth_msg;
-    sensor_msgs::CameraInfo cam_info;
+    sensor_msgs::msg::CameraInfo cam_info;
 
     // Get calibration parameters
     std::vector<cv::Mat> paramsArray;
@@ -142,7 +142,7 @@ int main(int argc, char **argv)
             std::string ty =  type2str( depth.type() );
             printf("Depth: %s %dx%d \n", ty.c_str(), depth.cols, depth.rows);
 
-            depth_msg = cv_bridge::CvImage(hdr, "mono16", depth).toImageMsg();
+            depth_msg = cv_bridge::CvImage(image_header, "mono16", depth).toImageMsg();
             depth_pub.publish(depth_msg);
             cv::waitKey(1);
         }
