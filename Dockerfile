@@ -12,7 +12,9 @@ COPY unitree_cam_publisher ~/ros2_ws/src
 RUN . /opt/ros/$ROS_DISTRO/install/setup.sh && \
     cd ~/ros2_ws && \
     colcon build && \
-    echo 'source ~/ros2_ws/install/setup.bash' >> /ros_entrypoint.sh && \
     echo 'source ~/ros2_ws/install/setup.bash' >> /root/.bashrc
+
+# setup container entrypoint
+COPY ./scripts/ros_entrypoint.sh /ros_entrypoint.sh
 
 RUN echo "ALL DONE!"
