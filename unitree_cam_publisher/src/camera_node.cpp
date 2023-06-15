@@ -71,8 +71,8 @@ int main(int argc, char **argv)
     rclcpp::NodeOptions options;
     rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared("image_publisher", options);
     image_transport::ImageTransport it(node);
-    image_transport::Publisher color_pub = it.advertise("camera/image", 1);
-    image_transport::CameraPublisher cam_pub;
+    // image_transport::Publisher color_pub = it.advertise("camera/image", 1);
+    image_transport::CameraPublisher cam_pub = it.advertise("camera/rect_image", 1);
     image_transport::Publisher depth_pub = it.advertise("camera/depth", 1);
 
     std_msgs::msg::Header image_header;
@@ -124,13 +124,13 @@ int main(int argc, char **argv)
             cam_info.width = left.cols;
             cam_info.header = image_header;
             cam_info.distortion_model = "plumb_bob";
-            cam_info.k = paramsArray[0].data;
-            cam_info.d = paramsArray[1].data;
-            cam_info.r = paramsArray[3].data;
-            cam_info.p = paramsArray[5].data;
+            cam_info.k = (double*) paramsArray[0].data;
+            cam_info.d = (double*) paramsArray[1].data;
+            cam_info.r = (double*) paramsArray[3].data;
+            cam_info.p = (double*) paramsArray[5].data;
 
             // Publish via image_transport
-            image_pub.publish(color_msg, cam_info);
+            cam_pub.publish(color_msg, cam_info);
             cv::waitKey(1);
         }
 
