@@ -15,6 +15,6 @@ RUN . /opt/ros/$ROS_DISTRO/install/setup.sh && \
     echo 'source ~/ros2_ws/install/setup.bash' >> /root/.bashrc
 
 # setup container entrypoint
-COPY ./scripts/ros_entrypoint.sh /ros_entrypoint.sh
+COPY ros_entrypoint.sh /ros_entrypoint.sh
 
 RUN echo "ALL DONE!"
