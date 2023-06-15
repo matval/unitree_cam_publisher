@@ -5,12 +5,14 @@ RUN apt-get update && \
     apt-get remove -y thunderbird libreoffice-* gazebo9* && \
     apt-get clean && apt-get autoclean && apt-get autoremove -y && \ 
     rm -rf /app/wheels && rm -rf /var/lib/apt/lists/* && \
-    mkdir -p workspace/ros2_ws/src
+    mkdir -p ~/ros2_ws/src
 
-COPY unitree_cam_publisher workspace/ros2_ws/src
+COPY unitree_cam_publisher ~/ros2_ws/src
 
 RUN . /opt/ros/$ROS_DISTRO/install/setup.sh && \
-    cd workspace/ros2_ws && \
-    colcon build
+    cd ~/ros2_ws && \
+    colcon build && \
+    echo 'source ~/ros2_ws/install/setup.bash' >> /ros_entrypoint.sh && \
+    echo 'source ~/ros2_ws/install/setup.bash' >> /root/.bashrc
 
 RUN echo "ALL DONE!"

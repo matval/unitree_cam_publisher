@@ -13,7 +13,6 @@
 #include "image_transport/image_transport.hpp"
 #include "std_msgs/msg/header.hpp"
 
-
 using namespace std::chrono_literals;
 
 std::string type2str(int type) {
@@ -73,24 +72,28 @@ int main(int argc, char **argv)
     rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared("image_publisher", options);
     image_transport::ImageTransport it(node);
     image_transport::Publisher color_pub = it.advertise("camera/image", 1);
+    image_transport::CameraPublisher cam_pub;
     image_transport::Publisher depth_pub = it.advertise("camera/depth", 1);
 
-    std_msgs::msg::Header hdr;
+    std_msgs::msg::Header image_header;
     sensor_msgs::msg::Image::SharedPtr color_msg, depth_msg;
+    sensor_msgs::CameraInfo cam_info;
 
     // Get calibration parameters
     std::vector<cv::Mat> paramsArray;
     if(cam.getCalibParams(paramsArray))
     {
+        // intrinsic, distortion, xi, rotation, translation, kfe
         for(int i=0; 0<paramsArray.size(); i++)
         {
             std::cout << "data:" << paramsArray[i] << std::endl;
         }
     }
     
-    rclcpp::WallRate loop_rate(5);
+    rclcpp::WallRate loop_rate(30);
     while(cam.isOpened() && rclcpp::ok())
     {
+        std::cout << "1" << std::endl;
         cv::Mat left, right, depth;
         std::chrono::microseconds t;
 
@@ -99,21 +102,39 @@ int main(int argc, char **argv)
             continue;
         }
 
+        std::cout << "2" << std::endl;
+
         if(!cam.getDepthFrame(depth, false, t)){  ///< get stereo camera depth image 
             usleep(1000);
             continue;
         }
 
+        std::cout << "3" << std::endl;
+
         if (!left.empty())
         {
             // Debug depth image type
             std::string ty =  type2str( left.type() );
-            printf("Depth: %s %dx%d \n", ty.c_str(), left.cols, left.rows);
+            printf("Color: %s %dx%d \n", ty.c_str(), left.cols, left.rows);
 
-            color_msg = cv_bridge::CvImage(hdr, "bgr8", left).toImageMsg();
-            color_pub.publish(color_msg);
+            color_msg = cv_bridge::CvImage(image_header, "bgr8", left).toImageMsg();
+            // color_pub.publish(color_msg);
+
+            cam_info.height = left.rows;
+            cam_info.width = left.cols;
+            cam_info.header = image_header;
+            cam_info.distortion_model = "plumb_bob";
+            cam_info.k = paramsArray[0].data;
+            cam_info.d = paramsArray[1].data;
+            cam_info.r = paramsArray[3].data;
+            cam_info.p = paramsArray[5].data;
+
+            // Publish via image_transport
+            image_pub.publish(color_msg, cam_info);
             cv::waitKey(1);
         }
+
+        std::cout << "4" << std::endl;
 
         if (!depth.empty())
         {
@@ -125,6 +146,8 @@ int main(int argc, char **argv)
             depth_pub.publish(depth_msg);
             cv::waitKey(1);
         }
+
+        std::cout << "5" << std::endl;
         
         // cv::Mat stereo;
         // cv::flip(left,left, -1);
