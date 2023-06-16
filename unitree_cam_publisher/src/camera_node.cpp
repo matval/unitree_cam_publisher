@@ -124,10 +124,22 @@ int main(int argc, char **argv)
             cam_info.width = left.cols;
             cam_info.header = image_header;
             cam_info.distortion_model = "plumb_bob";
-            cam_info.k = paramsArray[0].at<double>();
-            cam_info.d = paramsArray[1].at<double>();
-            cam_info.r = paramsArray[3].at<double>();
-            cam_info.p = paramsArray[5].at<double>();
+            for(int i=0; i<paramsArray[0].rows*paramsArray[0].cols; i++)
+            {
+                cam_info.k[i] = paramsArray[0].reshape(1).at<double>(i);
+            }
+            for(int i=0; i<paramsArray[1].rows*paramsArray[1].cols; i++)
+            {
+                cam_info.d[i] = paramsArray[1].reshape(1).at<double>(i);
+            }
+            for(int i=0; i<paramsArray[3].rows*paramsArray[3].cols; i++)
+            {
+                cam_info.r[i] = paramsArray[3].reshape(1).at<double>(i);
+            }
+            for(int i=0; i<paramsArray[5].rows*paramsArray[5].cols; i++)
+            {
+                cam_info.p[i] = paramsArray[5].reshape(1).at<double>(i);
+            }
 
             // Publish via image_transport
             cam_pub.publish(color_msg, cam_info);
