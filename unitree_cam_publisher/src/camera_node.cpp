@@ -76,8 +76,8 @@ int main(int argc, char **argv)
     image_transport::Publisher depth_pub = it.advertise("camera/depth", 1);
 
     std_msgs::msg::Header image_header;
-    sensor_msgs::msg::Image color_msg, depth_msg;
-    sensor_msgs::msg::CameraInfo cam_info;
+    sensor_msgs::msg::Image::SharedPtr color_msg, depth_msg;
+    sensor_msgs::msg::CameraInfo::SharedPtr cam_info;
 
     // Get calibration parameters
     std::vector<cv::Mat> paramsArray;
@@ -120,25 +120,25 @@ int main(int argc, char **argv)
             color_msg = cv_bridge::CvImage(image_header, "bgr8", left).toImageMsg();
             // color_pub.publish(color_msg);
 
-            cam_info.height = left.rows;
-            cam_info.width = left.cols;
-            cam_info.header = image_header;
-            cam_info.distortion_model = "plumb_bob";
+            cam_info->height = left.rows;
+            cam_info->width = left.cols;
+            cam_info->header = image_header;
+            cam_info->distortion_model = "plumb_bob";
             for(int i=0; i<paramsArray[0].rows*paramsArray[0].cols; i++)
             {
-                cam_info.k[i] = paramsArray[0].reshape(1).at<double>(i);
+                cam_info->k[i] = paramsArray[0].reshape(1).at<double>(i);
             }
             for(int i=0; i<paramsArray[1].rows*paramsArray[1].cols; i++)
             {
-                cam_info.d[i] = paramsArray[1].reshape(1).at<double>(i);
+                cam_info->d[i] = paramsArray[1].reshape(1).at<double>(i);
             }
             for(int i=0; i<paramsArray[3].rows*paramsArray[3].cols; i++)
             {
-                cam_info.r[i] = paramsArray[3].reshape(1).at<double>(i);
+                cam_info->r[i] = paramsArray[3].reshape(1).at<double>(i);
             }
             for(int i=0; i<paramsArray[5].rows*paramsArray[5].cols; i++)
             {
-                cam_info.p[i] = paramsArray[5].reshape(1).at<double>(i);
+                cam_info->p[i] = paramsArray[5].reshape(1).at<double>(i);
             }
 
             // Publish via image_transport
