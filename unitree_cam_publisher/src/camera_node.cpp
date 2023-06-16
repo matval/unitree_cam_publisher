@@ -72,7 +72,7 @@ int main(int argc, char **argv)
     rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared("image_publisher", options);
     image_transport::ImageTransport it(node);
     // image_transport::Publisher color_pub = it.advertise("camera/image", 1);
-    image_transport::CameraPublisher cam_pub = it.advertise("camera/rect_image", 1);
+    image_transport::CameraPublisher cam_pub = it.advertiseCamera("camera/rect_image", 1);
     image_transport::Publisher depth_pub = it.advertise("camera/depth", 1);
 
     std_msgs::msg::Header image_header;
