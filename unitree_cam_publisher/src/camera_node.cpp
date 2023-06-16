@@ -76,7 +76,7 @@ int main(int argc, char **argv)
     image_transport::Publisher depth_pub = it.advertise("camera/depth", 1);
 
     std_msgs::msg::Header image_header;
-    sensor_msgs::msg::Image::SharedPtr color_msg, depth_msg;
+    sensor_msgs::msg::Image color_msg, depth_msg;
     sensor_msgs::msg::CameraInfo cam_info;
 
     // Get calibration parameters
