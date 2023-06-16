@@ -124,10 +124,10 @@ int main(int argc, char **argv)
             cam_info.width = left.cols;
             cam_info.header = image_header;
             cam_info.distortion_model = "plumb_bob";
-            cam_info.k = (double*) paramsArray[0].at<float>();
-            cam_info.d = (double*) paramsArray[1].at<float>();
-            cam_info.r = (double*) paramsArray[3].at<float>();
-            cam_info.p = (double*) paramsArray[5].at<float>();
+            cam_info.k = paramsArray[0].at<double>();
+            cam_info.d = paramsArray[1].at<double>();
+            cam_info.r = paramsArray[3].at<double>();
+            cam_info.p = paramsArray[5].at<double>();
 
             // Publish via image_transport
             cam_pub.publish(color_msg, cam_info);
