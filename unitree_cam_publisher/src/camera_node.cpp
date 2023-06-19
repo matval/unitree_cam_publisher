@@ -96,7 +96,7 @@ int main(int argc, char **argv)
     if(!cam.isOpened())
     {
         std::cout << "Cam is not opened!" << std::endl;
-        return -1
+        return -1;
     }
     
     rclcpp::WallRate loop_rate(30);
