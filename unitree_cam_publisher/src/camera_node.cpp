@@ -115,40 +115,40 @@ int main(int argc, char **argv)
 
         std::cout << "3" << std::endl;
 
-        // if (!left.empty())
-        // {
-        //     // Debug depth image type
-        //     std::string ty =  type2str( left.type() );
-        //     printf("Color: %s %dx%d \n", ty.c_str(), left.cols, left.rows);
+        if (!left.empty())
+        {
+            // Debug depth image type
+            std::string ty =  type2str( left.type() );
+            printf("Color: %s %dx%d \n", ty.c_str(), left.cols, left.rows);
 
-        //     color_msg = cv_bridge::CvImage(image_header, "bgr8", left).toImageMsg();
-        //     // color_pub.publish(color_msg);
+            color_msg = cv_bridge::CvImage(image_header, "bgr8", left).toImageMsg();
+            // color_pub.publish(color_msg);
 
-        //     cam_info->height = left.rows;
-        //     cam_info->width = left.cols;
-        //     cam_info->header = image_header;
-        //     cam_info->distortion_model = "plumb_bob";
-        //     for(int i=0; i<paramsArray[0].rows*paramsArray[0].cols; i++)
-        //     {
-        //         cam_info->k[i] = paramsArray[0].reshape(1).at<double>(i);
-        //     }
-        //     for(int i=0; i<paramsArray[1].rows*paramsArray[1].cols; i++)
-        //     {
-        //         cam_info->d[i] = paramsArray[1].reshape(1).at<double>(i);
-        //     }
-        //     for(int i=0; i<paramsArray[3].rows*paramsArray[3].cols; i++)
-        //     {
-        //         cam_info->r[i] = paramsArray[3].reshape(1).at<double>(i);
-        //     }
-        //     for(int i=0; i<paramsArray[5].rows*paramsArray[5].cols; i++)
-        //     {
-        //         cam_info->p[i] = paramsArray[5].reshape(1).at<double>(i);
-        //     }
+            cam_info->height = left.rows;
+            cam_info->width = left.cols;
+            cam_info->header = image_header;
+            cam_info->distortion_model = "plumb_bob";
+            for(int i=0; i<paramsArray[0].rows*paramsArray[0].cols; i++)
+            {
+                cam_info->k[i] = paramsArray[0].reshape(1).at<double>(i);
+            }
+            for(int i=0; i<paramsArray[1].rows*paramsArray[1].cols; i++)
+            {
+                cam_info->d[i] = paramsArray[1].reshape(1).at<double>(i);
+            }
+            for(int i=0; i<paramsArray[3].rows*paramsArray[3].cols; i++)
+            {
+                cam_info->r[i] = paramsArray[3].reshape(1).at<double>(i);
+            }
+            for(int i=0; i<paramsArray[5].rows*paramsArray[5].cols; i++)
+            {
+                cam_info->p[i] = paramsArray[5].reshape(1).at<double>(i);
+            }
 
-        //     // Publish via image_transport
-        //     cam_pub.publish(color_msg, cam_info);
-        //     cv::waitKey(1);
-        // }
+            // Publish via image_transport
+            cam_pub.publish(color_msg, cam_info);
+            cv::waitKey(1);
+        }
 
         std::cout << "4" << std::endl;
 
