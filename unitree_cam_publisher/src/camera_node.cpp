@@ -83,14 +83,14 @@ int main(int argc, char **argv)
 
     // Get calibration parameters
     std::vector<cv::Mat> paramsArray;
-    if(cam.getCalibParams(paramsArray))
-    {
-        // intrinsic, distortion, xi, rotation, translation, kfe
-        for(int i=0; 0<paramsArray.size(); i++)
-        {
-            std::cout << "data:" << paramsArray[i] << std::endl;
-        }
-    }
+    // if(cam.getCalibParams(paramsArray))
+    // {
+    //     // intrinsic, distortion, xi, rotation, translation, kfe
+    //     for(int i=0; 0<paramsArray.size(); i++)
+    //     {
+    //         std::cout << "data:" << paramsArray[i] << std::endl;
+    //     }
+    // }
 
     std::cout << "0" << std::endl;
     
