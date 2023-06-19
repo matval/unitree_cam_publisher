@@ -54,6 +54,7 @@ int main(int argc, char **argv)
             fps = std::atoi(argv[4]);
     }
     
+    // Load camera stuf
     UnitreeCamera cam(deviceNode); //"stereo_camera_config.yaml"); ///< init camera by device node number
     if(!cam.isOpened())   ///< get camera open state
         exit(EXIT_FAILURE);
@@ -67,6 +68,7 @@ int main(int argc, char **argv)
     
     usleep(500000);
 
+    // Start ROS stuff
     rclcpp::init(argc, argv);
     rclcpp::NodeOptions options;
     rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared("image_publisher", options);
@@ -89,9 +91,16 @@ int main(int argc, char **argv)
             std::cout << "data:" << paramsArray[i] << std::endl;
         }
     }
+    std::cout << "0" << std::endl;
+
+    if(!cam.isOpened())
+    {
+        std::cout << "Cam is not opened!" << std::endl;
+        return -1
+    }
     
     rclcpp::WallRate loop_rate(30);
-    while(cam.isOpened() && rclcpp::ok())
+    while(rclcpp::ok())
     {
         std::cout << "1" << std::endl;
         cv::Mat left, right, depth;
