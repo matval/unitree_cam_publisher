@@ -79,25 +79,42 @@ int main(int argc, char **argv)
 
     std_msgs::msg::Header image_header;
     sensor_msgs::msg::Image::SharedPtr color_msg, depth_msg;
-    sensor_msgs::msg::CameraInfo::SharedPtr cam_info;
+    sensor_msgs::msg::CameraInfo::SharedPtr cam_info(new sensor_msgs::msg::CameraInfo());
 
     // Get calibration parameters
     std::vector<cv::Mat> paramsArray;
-    // if(cam.getCalibParams(paramsArray))
-    // {
-    //     // intrinsic, distortion, xi, rotation, translation, kfe
-    //     for(int i=0; 0<paramsArray.size(); i++)
-    //     {
-    //         std::cout << "data:" << paramsArray[i] << std::endl;
-    //     }
-    // }
+    if(cam.getCalibParams(paramsArray))
+    {
+        // intrinsic, distortion, xi, rotation, translation, kfe
+        for(std::size_t i=0; i<paramsArray.size(); i++)
+        {
+            std::cout << "\ndata:\n" << paramsArray[i] << std::endl;
+        }
 
-    std::cout << "0" << std::endl;
+        // Populate CameraInfo message
+        cam_info->distortion_model = "rational_polynomial";
+        for(int i=0; i<paramsArray[0].rows*paramsArray[0].cols; i++)
+        {
+            cam_info->k[i] = paramsArray[0].reshape(1).at<double>(i);
+        }
+        cam_info->d.resize(4, 0.0);
+        for(int i=0; i<paramsArray[1].rows*paramsArray[1].cols; i++)
+        {
+            cam_info->d[i] = paramsArray[1].reshape(1).at<double>(i);
+        }
+        for(int i=0; i<paramsArray[3].rows*paramsArray[3].cols; i++)
+        {
+            cam_info->r[i] = paramsArray[3].reshape(1).at<double>(i);
+        }
+        for(int i=0; i<paramsArray[5].rows*paramsArray[5].cols; i++)
+        {
+            cam_info->p[i] = paramsArray[5].reshape(1).at<double>(i);
+        }
+    }
     
     rclcpp::WallRate loop_rate(30);
     while(rclcpp::ok() && cam.isOpened())
     {
-        std::cout << "1" << std::endl;
         cv::Mat left, right, depth;
         std::chrono::microseconds t;
 
@@ -106,79 +123,49 @@ int main(int argc, char **argv)
             continue;
         }
 
-        std::cout << "2" << std::endl;
-
+        // Try with disparity
+        getDepthFrame(cv::Mat& dispf, cv::Mat& depth);
         if(!cam.getDepthFrame(depth, false, t)){  ///< get stereo camera depth image 
             usleep(1000);
             continue;
         }
 
-        std::cout << "3" << std::endl;
+        image_header.stamp = node->get_clock()->now();;
+        image_header.frame_id = "camera_frame";
 
         if (!left.empty())
         {
-            // Debug depth image type
-            std::string ty =  type2str( left.type() );
-            printf("Color: %s %dx%d \n", ty.c_str(), left.cols, left.rows);
+            // Debug color image type
+            // std::string ty =  type2str( left.type() );
+            // printf("Color: %s %dx%d \n", ty.c_str(), left.cols, left.rows);
 
             color_msg = cv_bridge::CvImage(image_header, "bgr8", left).toImageMsg();
-            // color_pub.publish(color_msg);
 
             cam_info->height = left.rows;
             cam_info->width = left.cols;
             cam_info->header = image_header;
-            cam_info->distortion_model = "plumb_bob";
-            for(int i=0; i<paramsArray[0].rows*paramsArray[0].cols; i++)
-            {
-                cam_info->k[i] = paramsArray[0].reshape(1).at<double>(i);
-            }
-            for(int i=0; i<paramsArray[1].rows*paramsArray[1].cols; i++)
-            {
-                cam_info->d[i] = paramsArray[1].reshape(1).at<double>(i);
-            }
-            for(int i=0; i<paramsArray[3].rows*paramsArray[3].cols; i++)
-            {
-                cam_info->r[i] = paramsArray[3].reshape(1).at<double>(i);
-            }
-            for(int i=0; i<paramsArray[5].rows*paramsArray[5].cols; i++)
-            {
-                cam_info->p[i] = paramsArray[5].reshape(1).at<double>(i);
-            }
 
             // Publish via image_transport
             cam_pub.publish(color_msg, cam_info);
             cv::waitKey(1);
         }
 
-        std::cout << "4" << std::endl;
-
         if (!depth.empty())
         {
             // Debug depth image type
-            std::string ty =  type2str( depth.type() );
-            printf("Depth: %s %dx%d \n", ty.c_str(), depth.cols, depth.rows);
+            // std::string ty =  type2str( depth.type() );
+            // printf("Depth: %s %dx%d \n", ty.c_str(), depth.cols, depth.rows);
 
-            depth_msg = cv_bridge::CvImage(image_header, "mono16", depth).toImageMsg();
+            depth_msg = cv_bridge::CvImage(image_header, "bgr8", depth).toImageMsg();
             depth_pub.publish(depth_msg);
             cv::waitKey(1);
         }
-
-        std::cout << "5" << std::endl;
-        
-        // cv::Mat stereo;
-        // cv::flip(left,left, -1);
-        // cv::flip(right,right, -1);
-        // cv::hconcat(left, right, stereo); 
-        // cv::flip(stereo,stereo, -1);
-        // cv::imshow("Longlat_Rect", stereo);
-        // char key = cv::waitKey(10);
-        // if(key == 27) // press ESC key
-        //    break;
 
         rclcpp::spin_some(node);
         loop_rate.sleep();
     }
     
+    am.stopStereoCompute();
     cam.stopCapture(); ///< stop camera capturing
 
     return 0;
