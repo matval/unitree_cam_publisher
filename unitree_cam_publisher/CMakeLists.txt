@@ -71,4 +71,7 @@ ament_target_dependencies(camera_node rclcpp cv_bridge image_transport OpenCV)
 install(TARGETS camera_node
   DESTINATION lib/${PROJECT_NAME})
 
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME})
+
 ament_package()

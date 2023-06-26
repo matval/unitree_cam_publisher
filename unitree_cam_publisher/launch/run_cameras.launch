@@ -1,6 +1,13 @@
 <launch>
-    <push-ros-namespace namespace="unitree"/>
+    <group>
+        <push-ros-namespace namespace="unitree"/>
 
-    <node pkg="unitree_cameras" exec="camera_node 0" name="left_stereo"/>
-    <node pkg="unitree_cameras" exec="camera_node 1" name="righ_stereo"/>
+        <node pkg="unitree_cameras" exec="camera_node" name="left_stereo">
+            <param name="device" value="1"/>
+        </node>
+
+        <node pkg="unitree_cameras" exec="camera_node" name="righ_stereo">
+            <param name="device" value="0"/>
+        </node>
+    </group>
 </launch>

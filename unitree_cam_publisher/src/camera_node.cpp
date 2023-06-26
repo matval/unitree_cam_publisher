@@ -40,19 +40,15 @@ std::string type2str(int type) {
 
 int main(int argc, char **argv)
 {
-    int deviceNode = 0; ///< default 0 -> /dev/video0
+    // Start ROS stuff
+    rclcpp::init(argc, argv);
+    rclcpp::NodeOptions options;
+    rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared("image_publisher", options);
+    
+    //< default 0 -> /dev/video0
+    int deviceNode = node->declare_parameter<int>("device", 0); 
     cv::Size frameSize(1856, 800); ///< default frame size 1856x800
     int fps = 30; ///< default camera fps: 30
-    
-    if(argc >= 2)
-    {
-        deviceNode = std::atoi(argv[1]);
-        if(argc >= 4){
-            frameSize = cv::Size(std::atoi(argv[2]), std::atoi(argv[3]));
-        }
-        if(argc >=5)
-            fps = std::atoi(argv[4]);
-    }
 
     std::string topic_name;
     if(deviceNode == 0)
@@ -78,10 +74,6 @@ int main(int argc, char **argv)
     
     usleep(500000);
 
-    // Start ROS stuff
-    rclcpp::init(argc, argv);
-    rclcpp::NodeOptions options;
-    rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared("image_publisher", options);
     image_transport::ImageTransport it(node);
     // image_transport::Publisher color_pub = it.advertise("camera/image", 1);
     image_transport::CameraPublisher left_cam_pub = it.advertiseCamera(topic_name + "/left_camera/rect_image", 1);
@@ -95,7 +87,7 @@ int main(int argc, char **argv)
 
     // Get calibration parameters for the right camera
     std::vector<cv::Mat> right_params;
-    if(cam.getCalibParams(right_params, true))
+    if(cam.getCalibParams(right_params, false))
     {
         // intrinsic, distortion, xi, rotation, translation, kfe
         for(std::size_t i=0; i<right_params.size(); i++)
@@ -126,7 +118,7 @@ int main(int argc, char **argv)
 
     // Get calibration parameters for the left camera
     std::vector<cv::Mat> left_params;
-    if(cam.getCalibParams(left_params, false))
+    if(cam.getCalibParams(left_params, true))
     {
         // intrinsic, distortion, xi, rotation, translation, kfe
         for(std::size_t i=0; i<left_params.size(); i++)
@@ -161,8 +153,8 @@ int main(int argc, char **argv)
         cv::Mat left, right; //, depth; //, dispf;
         std::chrono::microseconds t;
 
-        // Get rectified left andright frames  
-        if(!cam.getRectStereoFrame(left, right))
+        // Get rectified left and right frames  
+        if(!cam.getRectStereoFrame(right, left))
         {
             usleep(50);
             continue;

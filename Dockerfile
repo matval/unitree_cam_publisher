@@ -7,7 +7,7 @@ RUN apt-get update && \
     # rm -rf /app/wheels && rm -rf /var/lib/apt/lists/* && \
     mkdir -p /root/ros2_ws/src
 
-COPY unitree_cam_publisher /root/ros2_ws/src
+COPY unitree_cam_publisher /root/ros2_ws/src/unitree_cam_publisher
 
 RUN . /opt/ros/$ROS_DISTRO/install/setup.sh && \
     cd /root/ros2_ws && \
