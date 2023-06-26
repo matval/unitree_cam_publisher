@@ -1,0 +1,6 @@
+<launch>
+    <push-ros-namespace namespace="unitree"/>
+
+    <node pkg="unitree_cameras" exec="camera_node 0" name="left_stereo"/>
+    <node pkg="unitree_cameras" exec="camera_node 1" name="righ_stereo"/>
+</launch>
