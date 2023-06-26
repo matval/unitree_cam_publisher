@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     rclcpp::init(argc, argv);
     rclcpp::NodeOptions options;
     rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared("image_publisher", options);
-    
+
     //< default 0 -> /dev/video0
     int deviceNode = node->declare_parameter<int>("device", 0); 
     cv::Size frameSize(1856, 800); ///< default frame size 1856x800
@@ -53,11 +53,11 @@ int main(int argc, char **argv)
     std::string topic_name;
     if(deviceNode == 0)
     {
-        topic_name = "left_stereo";
+        topic_name = "right_stereo";
     }
     else if(deviceNode == 1)
     {
-        topic_name = "right_stereo";
+        topic_name = "left_stereo";
     }
     
     // Load camera stuf

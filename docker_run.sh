@@ -5,7 +5,7 @@ kill $(ps aux | grep '[c]amera' | awk '{print $2}')
 kill $(ps aux | grep '[i]mage' | awk '{print $2}')
 
 # Then, run the container
-docker run --rm \
+docker run --rm -d \
     --network host \
     --device /dev/video0 \
     --device /dev/video1 \
